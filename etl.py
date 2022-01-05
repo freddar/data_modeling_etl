@@ -25,7 +25,7 @@ def process_song_file(cur, filepath):
     cur.execute(song_table_insert, song_data)
     
     # insert artist record
-    artist_data = list(df[['artist_id', 'artist_name', 'artist_location', 'artist_latitude',                                                        'artist_longitude']].values[0])
+    artist_data = list(df[['artist_id', 'artist_name', 'artist_location', 'artist_latitude', 'artist_longitude']].values[0])
     cur.execute(artist_table_insert, artist_data)
 
 
@@ -56,7 +56,7 @@ def process_log_file(cur, filepath):
     t = pd.to_datetime(df['ts'], unit='ms')
     
     # insert time data records
-    time_data = [t.dt.strftime('%Y-%m-%d %I:%M:%S').values, t.dt.hour.values, t.dt.day.values, t.dt.weekofyear.values, t.dt.month.values, t.dt.year.values,                        t.dt.weekday.values]
+    time_data = [t.dt.strftime('%Y-%m-%d %I:%M:%S').values, t.dt.hour.values, t.dt.day.values, t.dt.weekofyear.values, t.dt.month.values, t.dt.year.values, t.dt.weekday.values]
     column_labels = ['start_time', 'hour', 'day', 'week', 'month', 'year', 'weekday']
     time_df = pd.DataFrame(dict(zip(column_labels, time_data)))
 
@@ -91,12 +91,12 @@ def process_log_file(cur, filepath):
 def process_data(cur, conn, filepath, func):
     
     """
-    This procedure connects to the database, gets all log or song files matching extension from the filepath     that has been provided as an argument.
+    This procedure connects to the database, gets all log or song files matching extension from the filepath that has been provided as an argument.
     It prints the number of files found in the provided filepath.
     It iterates over all the files, processes each one of them with the function that has been provided 
-    as an argument in order to extract, transform and load the right data into each one of the tables in the     star schema that are fed by the function.
+    as an argument in order to extract, transform and load the right data into each one of the tables in the star schema that are fed by the function.
     Finally, after each file is processed and data stored in the right table of the database from that file,
-    it prints the index of the processed file and the number of existing files. This shows how many files out     of all the existing files where processed.
+    it prints the index of the processed file and the number of existing files. This shows how many files out of all the existing files where processed.
 
     INPUTS: 
     * cur the cursor variable to perform database operations
