@@ -1,3 +1,4 @@
+---
 
 # Udacity training - Data modeling with Postgres
 
@@ -99,6 +100,8 @@ SELECT DISTINCT hour, COUNT(hour) FROM time GROUP BY hour;
 ---
 
 # Sources & documentation
+
+---
 
 - Python documentation
 
